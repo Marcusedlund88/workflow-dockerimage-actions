@@ -28,6 +28,7 @@ jobs:
 
   validate-compose:
     runs-on: ubuntu-latest
+    environment: env
     env:
       DB_USER: ${{ vars.DB_USER }}
       DB_PASSWORD: ${{ vars.DB_PASSWORD }}
