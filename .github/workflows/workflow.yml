@@ -28,13 +28,16 @@ jobs:
 
   validate-compose:
     runs-on: ubuntu-latest
+    env:
+      DB_USER: ${{ vars.DB_USER }}
+      DB_PASSWORD: ${{ vars.DB_PASSWORD }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Validate Docker Compose Configuration
         run: |
-          DB_USER=${{ vars.DB_USER }}
-          DB_PASSWORD=${{ vars.DB_PASSWORD }}
+          DB_USER=$DB_USER
+          DB_PASSWORD=$DB_PASSWORD
           docker-compose -f docker-compose.yml config --quiet
         
