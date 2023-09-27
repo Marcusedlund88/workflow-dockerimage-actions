@@ -38,9 +38,7 @@ jobs:
 
       - name: Validate Docker Compose Configuration
         run: |
-          if [ -n "$GITHUB_ACTIONS" ]; then
-            # Unset env_file by setting it to an empty string
-            sed -i 's/env_file:/env_file: ""/' docker-compose.yml
+          sed -i 's/env_file:/env_file: ""/' docker-compose.yml
           fi
           DB_USER=$DB_USER
           DB_PASSWORD=$DB_PASSWORD
