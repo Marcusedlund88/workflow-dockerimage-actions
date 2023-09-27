@@ -39,7 +39,6 @@ jobs:
       - name: Validate Docker Compose Configuration
         run: |
           sed -i 's/env_file:/env_file: ""/' docker-compose.yml
-          fi
           DB_USER=$DB_USER
           DB_PASSWORD=$DB_PASSWORD
           docker-compose -f docker-compose.yml config --quiet
