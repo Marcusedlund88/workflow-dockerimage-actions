@@ -33,11 +33,17 @@ jobs:
       DB_USER: ${{ vars.DB_USER }}
       DB_PASSWORD: ${{ vars.DB_PASSWORD }}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Validate Docker Compose Configuration
-        run: |
+    - name: Set environment variables for Docker Compose
+      run: |
+        echo "DB_USER=${DB_USER}" >> .env
+        echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
+
+    - name: Validate Docker Compose Configuration
+      run: |
+        docker-compose -f docker-compose.yml config --quiet
           DB_USER=$DB_USER
           DB_PASSWORD=$DB_PASSWORD
           docker-compose -f docker-compose.yml config --quiet
