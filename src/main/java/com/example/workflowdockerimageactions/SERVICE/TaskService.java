@@ -6,13 +6,19 @@ import com.example.workflowdockerimageactions.REPO.TaskRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class TaskService {
 
     private final TaskRepo taskRepo;
     private Task newTask;
     private TaskInstance taskInstance;
+
+    public TaskService(TaskRepo taskRepo) {
+        this.taskRepo = taskRepo;
+    }
 
     public TaskInstance createNewTask(String task, double timeInHours){
 
@@ -26,6 +32,14 @@ public class TaskService {
             taskInstance = new TaskInstance(newTask,timeInHours);
         }
         return taskInstance;
+    }
+
+    public List<Task> getAllTasks() {
+        return taskRepo.findAll();
+    }
+
+    public void deleteTask(Long taskId) {
+        taskRepo.deleteById(taskId);
     }
 
 }
