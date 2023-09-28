@@ -39,7 +39,9 @@ public class TaskService {
     }
 
     public void deleteTask(Long taskId) {
-        taskRepo.deleteById(taskId);
+        if(taskRepo.findTasksById(taskId) != null ){
+            taskRepo.deleteById(taskId);
+        }
     }
 
 }
