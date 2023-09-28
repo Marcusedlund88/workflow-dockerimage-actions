@@ -28,8 +28,8 @@ services:
       - my-db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://my-db:3306/tasks
-      - SPRING_DATASOURCE_USERNAME=${DB_USER}
-      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - SPRING_DATASOURCE_USERNAME=${SS_USER}
+      - SPRING_DATASOURCE_PASSWORD=${SS_PASSWORD}
     env_file:
       - .env
     networks:
