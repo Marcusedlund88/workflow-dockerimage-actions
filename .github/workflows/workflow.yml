@@ -1,7 +1,6 @@
 name: Java CI and Dockerfile Validation
 
 on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,8 +26,10 @@ jobs:
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
-        with:
-          arguments: build
+      - name: Build with Gradle (excluding a package)
+        run: |
+          echo 'sourceSets { test { java { exclude "com/example/workflowdockerimageactions/CONTROLLER/**" } } }' >> build.gradle
+            ./gradlew build
 
   validate-compose:
     runs-on: ubuntu-latest

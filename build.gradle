@@ -15,8 +15,6 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-   /* integrationTestImplementation.extendsFrom testImplementation
-    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly*/
 }
 
 repositories {
@@ -42,11 +40,4 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-/*sourceSets {
-    integrationTest {
-        java {
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-        }
-    }
-}*/
+
