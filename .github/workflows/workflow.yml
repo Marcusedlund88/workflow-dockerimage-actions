@@ -54,15 +54,6 @@ jobs:
       DB_USER: ${{ vars.DB_USER }}
       DB_PASSWOD: ${{ vars.DB_PASSWORD }}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
       - name: Deploy Your Application
         run: |
           # Deploy
@@ -73,15 +64,6 @@ jobs:
     needs: deploy
     if: github.ref == 'refs/heads/master'
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
       - name: Run System Tests
         run: |
           # Do tests
