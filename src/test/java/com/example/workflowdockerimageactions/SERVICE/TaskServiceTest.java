@@ -3,9 +3,16 @@ package com.example.workflowdockerimageactions.SERVICE;
 import com.example.workflowdockerimageactions.DATA.Task;
 import com.example.workflowdockerimageactions.MODEL.TaskInstance;
 import com.example.workflowdockerimageactions.REPO.TaskRepo;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
@@ -13,6 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class TaskServiceTest {
+
+    @BeforeAll
+    public static void setVars(){
+        System.setProperty("SS_USER","dummyUser");
+        System.setProperty("SS_PASSWORD","dummyUser");
+    }
 
     @Autowired
     private TaskRepo taskRepo;

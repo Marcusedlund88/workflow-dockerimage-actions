@@ -1,12 +1,21 @@
 package com.example.workflowdockerimageactions.MODEL;
 
 import com.example.workflowdockerimageactions.DATA.Task;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
 class TaskInstanceTest {
+
+    @BeforeAll
+    public static void setVars(){
+        System.setProperty("SS_USER","dummyUser");
+        System.setProperty("SS_PASSWORD","dummyUser");
+    }
 
     private TaskInstance taskInstance;
     private Task task;

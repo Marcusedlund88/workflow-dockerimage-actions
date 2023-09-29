@@ -1,11 +1,21 @@
 package com.example.workflowdockerimageactions.DATA;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 public final class TaskTest {
+
+    @BeforeAll
+    public static void setVars(){
+        System.setProperty("SS_USER","dummyUser");
+        System.setProperty("SS_PASSWORD","dummyUser");
+    }
 
     private Task testTask;
 
