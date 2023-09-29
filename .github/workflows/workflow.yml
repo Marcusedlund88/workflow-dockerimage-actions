@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: env
     env:
-      SS_USER: ${{ secret.SS_USER }}
-      SS_PASSWORD: ${{ secret.SS_PASSWORD }}
+      SS_USER: ${{ secrets.SS_USER }}
+      SS_PASSWORD: ${{ secrets.SS_PASSWORD }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
