@@ -24,6 +24,8 @@ class TaskControllerTest {
 
     @Test
     void getAllTasks(){
+        int i = 2;
+        assertEquals(i,1);
     }
 
     @Test
