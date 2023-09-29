@@ -30,7 +30,7 @@ jobs:
       - name: Build with Gradle (excluding a package)
         run: |
             echo 'sourceSets { main { java { exclude "com/example/workflowdockerimageactions/CONTROLLER/**" } } }' >> build.gradle
-            ./gradlew build -x com/example/workflowdockerimageactions/CONTROLLER/**
+            ./gradlew build
 
   validate-compose:
     runs-on: ubuntu-latest
