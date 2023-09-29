@@ -1,9 +1,6 @@
 name: Java CI and Dockerfile Validation
 
-on: 
-  push:
-    paths:
-    - '!test/com/example/workflowdockerimageactions/CONTROLLER/**'
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
