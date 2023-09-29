@@ -1,6 +1,6 @@
 name: Java CI and Dockerfile Validation
 
-on:
+on: 
   push:
     paths:
     - '!test/com/example/workflowdockerimageactions/CONTROLLER/**'
@@ -31,7 +31,6 @@ jobs:
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
       - name: Build with Gradle (excluding a package)
         run: |
-            echo 'sourceSets { main { java { exclude "test/com/example/workflowdockerimageactions/CONTROLLER/**" } } }' >> build.gradle
             ./gradlew build
 
   validate-compose:
