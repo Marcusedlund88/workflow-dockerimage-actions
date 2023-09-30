@@ -78,6 +78,10 @@ jobs:
       - name: Sleep
         run: sleep 30s
         shell: bash
+      - name: Start Application using Java in the Background
+        run: |
+         nohup java -jar build/libs/your-application-name.jar &
+         sleep 30  # Give some time for the app to start
       - name: Wait for Application to Start
         run: |
           for i in {1..30}; do
