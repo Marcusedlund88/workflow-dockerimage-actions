@@ -37,12 +37,16 @@ class TaskControllerTest {
     @Test
     void getAllTasks(){
 
-/*        String username = System.getenv("SS_USER");
+        String user = component.getUsername();
+        assertEquals(user, "user");
+
+        String username = System.getenv("SS_USER");
         String password = System.getenv("SS_PASSWORD");
 
-        logger.info(component.getUsername() + " " + component.getPassword());
+        assertEquals(username, "user");
+
         RestAssured.baseURI = "http://localhost:8080";
-        System.out.println(component.getPassword());
+
         given()
                 .auth()
                 .basic(username, password)
@@ -52,7 +56,7 @@ class TaskControllerTest {
                 .statusCode(200)
                 .body("$", hasSize(2))
                 .body("[0].name", equalTo("task 1"))
-                .body("[1].name", equalTo("task 2"));*/
+                .body("[1].name", equalTo("task 2"));
     }
 
     @Test
