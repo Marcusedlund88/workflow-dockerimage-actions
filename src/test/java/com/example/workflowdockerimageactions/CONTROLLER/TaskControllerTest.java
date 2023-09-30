@@ -5,6 +5,8 @@ import com.example.workflowdockerimageactions.COMPONENT.Component;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
@@ -34,9 +36,12 @@ class TaskControllerTest {
     @Autowired
     private Component component;
 
+    private static final Logger logger = LoggerFactory.getLogger(TaskControllerTest.class);
+
     @Test
     void getAllTasks(){
 
+        logger.info(component.getUsername() + " " + component.getPassword());
         RestAssured.baseURI = "http://localhost:8080";
         System.out.println(component.getPassword());
         given()
