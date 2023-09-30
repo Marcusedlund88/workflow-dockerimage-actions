@@ -33,6 +33,9 @@ class TaskControllerTest {
         System.setProperty("SS_PASSWORD","password");
     }*/
 
+    String username = System.getenv("SS_USER");
+    String password = System.getenv("SS_PASSWORD");
+
     @Autowired
     private Component component;
 
@@ -41,12 +44,15 @@ class TaskControllerTest {
     @Test
     void getAllTasks(){
 
+        String username = System.getenv("SS_USER");
+        String password = System.getenv("SS_PASSWORD");
+
         logger.info(component.getUsername() + " " + component.getPassword());
         RestAssured.baseURI = "http://localhost:8080";
         System.out.println(component.getPassword());
         given()
                 .auth()
-                .basic(component.getUsername(),component.getPassword())
+                .basic(username, password)
                 .when()
                 .get("/all")
                 .then()
@@ -58,6 +64,7 @@ class TaskControllerTest {
 
     @Test
     void deleteTask() {
+        logger.info(component.getUsername() + " " + component.getPassword());
     }
 
     @Test
