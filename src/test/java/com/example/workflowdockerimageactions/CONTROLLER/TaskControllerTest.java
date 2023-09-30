@@ -25,11 +25,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class TaskControllerTest {
 
 
-    @BeforeAll
+  /*  @BeforeAll
     public static void setVars(){
-        System.setProperty("SS_USER","dummyUser");
-        System.setProperty("SS_PASSWORD","dummyUser");
-    }
+        System.setProperty("SS_USER","user");
+        System.setProperty("SS_PASSWORD","password");
+    }*/
 
     @Autowired
     private Component component;
@@ -38,7 +38,7 @@ class TaskControllerTest {
     void getAllTasks(){
 
         RestAssured.baseURI = "http://localhost:8080";
-
+        System.out.println(component.getPassword());
         given()
                 .auth()
                 .basic(component.getUsername(),component.getPassword())
