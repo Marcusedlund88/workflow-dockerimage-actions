@@ -58,6 +58,7 @@ class TaskControllerTest {
 
     @Test
     void deleteTask() {
+        logger.info(component.getUsername() + " " + component.getPassword());
     }
 
     @Test
