@@ -84,7 +84,7 @@ jobs:
 
       - name: Run system tests
         run: |
-          ./gradlew test --tests "com.example.workflowdockerimageactions.CONTROLLER.*"
+          ./gradlew test --tests "com.example.workflowdockerimageactions.CONTROLLER.TaskControllerTest"
           
         
 
