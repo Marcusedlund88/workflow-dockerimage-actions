@@ -1,6 +1,7 @@
 package com.example.workflowdockerimageactions.CONTROLLER;
 
 
+import com.example.workflowdockerimageactions.COMPONENT.Component;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -30,12 +31,13 @@ class TaskControllerTest {
         System.setProperty("SS_PASSWORD","dummyUser");
     }
 
+    @Autowired
+    private Component component;
+
     @Test
     void getAllTasks(){
-        int i = 1;
-        assertEquals(1,i);
-  /*     RestAssured.baseURI = "http://localhost:8080";
-        System.out.println(component.getPassword());
+
+        RestAssured.baseURI = "http://localhost:8080";
 
         given()
                 .auth()
@@ -46,7 +48,7 @@ class TaskControllerTest {
                 .statusCode(200)
                 .body("$", hasSize(2))
                 .body("[0].name", equalTo("task 1"))
-                .body("[1].name", equalTo("task 2"));*/
+                .body("[1].name", equalTo("task 2"));
     }
 
     @Test
