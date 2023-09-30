@@ -77,11 +77,19 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
 
+      - name: Add Custom Gradle Task
+        run: |
+          echo 'task buildWithExclusions(type: GradleBuild) {' >> build.gradle
+          echo '    tasks = ["build", "testClasses"]' >> build.gradle
+          echo '    startParameter.excludedTaskNames = ["test"]' >> build.gradle
+          echo '    doLast {' >> build.gradle
+          echo '        // Perform any additional build steps here' >> build.gradle
+          echo '    }' >> build.gradle
+          echo '}' >> build.gradle
+
       - name: Build with Gradle (excluding a package)
         run: |
-          ##echo 'sourceSets { test { java { exclude "com/example/workflowdockerimageactions/CONTROLLER/**" } } }' >> build.gradle
-          echo 'task buildTests(type: Test) {exclude "com/example/workflowdockerimageactions/CONTROLLER/**"}' >> build.gradle
-            ./gradlew build
+          ./gradlew buildWithExclusions
 
       - name: Run system tests
         run: |
