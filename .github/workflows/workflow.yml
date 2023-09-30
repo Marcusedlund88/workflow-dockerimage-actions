@@ -79,12 +79,13 @@ jobs:
 
       - name: Build with Gradle (excluding a package)
         run: |
-          echo 'sourceSets { test { java { exclude "com/example/workflowdockerimageactions/CONTROLLER/**" } } }' >> build.gradle
+          ##echo 'sourceSets { test { java { exclude "com/example/workflowdockerimageactions/CONTROLLER/**" } } }' >> build.gradle
+          echo 'task buildTests(type: Test) {exclude "com/example/workflowdockerimageactions/CONTROLLER/**"}' >> build.gradle
             ./gradlew build
 
       - name: Run system tests
         run: |
-          echo 'sourceSets { test { java { include "com/example/workflowdockerimageactions/CONTROLLER/**" } } }' >> build.gradle
+          ##echo 'sourceSets { test { java { include "com/example/workflowdockerimageactions/CONTROLLER/**" } } }' >> build.gradle
           ./gradlew test --tests "com.example.workflowdockerimageactions.CONTROLLER.TaskControllerTest"
           
         
