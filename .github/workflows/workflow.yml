@@ -88,6 +88,10 @@ jobs:
       - name: Run all tests
         run: |
           ./gradlew test --tests "com.example.workflowdockerimageactions.CONTROLLER.TaskControllerTest"
+        with:
+  				  max_attempts: 3
+				    retry_on: error
+				    timeout_seconds: 5
           
   deploy:
     runs-on: ubuntu-latest
