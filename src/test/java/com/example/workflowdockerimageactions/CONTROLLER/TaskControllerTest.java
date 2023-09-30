@@ -37,7 +37,10 @@ class TaskControllerTest {
     @Test
     void getAllTasks(){
 
-/*        String username = System.getenv("SS_USER");
+        String user = component.getUsername();
+        assertEquals(user, "user");
+        /*
+        String username = System.getenv("SS_USER");
         String password = System.getenv("SS_PASSWORD");
 
         logger.info(component.getUsername() + " " + component.getPassword());
