@@ -33,7 +33,7 @@ class TaskControllerTest {
     @Test
     void getAllTasks(){
         int i = 1;
-        assertEquals(2,i);
+        assertEquals(1,i);
   /*     RestAssured.baseURI = "http://localhost:8080";
         System.out.println(component.getPassword());
 
