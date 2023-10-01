@@ -27,8 +27,8 @@ jobs:
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
       - name: Add Custom Gradle Task
         run: >
-          echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build",
-          "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
+          echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build", "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
+          echo 'task customJar(type: Jar) {from sourceSets.main.output archiveFileName = "app.jar"}' >> build.gradle
           ./gradlew build
       - name: List Files in Path
         run: |
@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: build/libs/workflow-dockerimage-actions-0.0.1-SNAPSHOT.jar
+          path: build/libs/app.jar
 
   run-tests:
     runs-on: ubuntu-latest
