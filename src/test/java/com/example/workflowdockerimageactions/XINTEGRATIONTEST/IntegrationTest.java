@@ -1,4 +1,4 @@
-package com.example.workflowdockerimageactions.CONTROLLER;
+package com.example.workflowdockerimageactions.XINTEGRATIONTEST;
 
 import com.example.workflowdockerimageactions.COMPONENT.Component;
 import org.json.JSONObject;
