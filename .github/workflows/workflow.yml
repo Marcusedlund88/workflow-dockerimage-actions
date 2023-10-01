@@ -28,7 +28,6 @@ jobs:
       - name: Add Custom Gradle Task
         run: >
           echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build", "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
-          echo 'task customJar(type: Jar) {from sourceSets.main.output archiveFileName = "app.jar"}' >> build.gradle
           ./gradlew build
       - name: bootJar
         run: |
