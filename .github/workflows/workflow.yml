@@ -106,27 +106,30 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml config --quiet
   
-
-
   dockerize:
     runs-on: ubuntu-latest
-    needs: run-tests
-      
-    if: github.ref == 'refs/heads/master'
     environment: env
     env:
       DB_USER: ${{ vars.DB_USER }}
-      DB_PASSWOD: ${{ vars.DB_PASSWORD }}
+      DB_PASSWORD: ${{ vars.DB_PASSWORD }}
+      SS_USER: ${{ vars.SS_USER }}
+      SS_PASSWORD: ${{ vars.SS_PASSWORD }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{
-          secrets.DOCKER_PASSWORD }}
-      - name: Build and Deploy with Docker Compose
+        uses: actions/checkout@v4
+      - name: Set environment variables for Docker Compose
+        run: |
+          echo "DB_USER=${DB_USER}" >> .env
+          echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
+          echo "SS_USER=${SS_USER}" >> .env
+          echo "SS_PASSWORD=${SS_PASSWORD}" >> .env
+      - name: Build from compose
         run: |
           docker-compose -f docker-compose.yml build
-          docker-compose -f docker-compose.yml up -d
+          docker-compose -f docker-compose.yml up
+      - name: shut down container
+        run: |
+          docker-compose -f docker-compose.yml down
 
   deploy:
     runs-on: ubuntu-latest
