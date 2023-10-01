@@ -12,30 +12,39 @@ jobs:
       SS_USER: ${{ vars.SS_USER }}
       SS_PASSWORD: ${{ vars.SS_PASSWORD }}
     steps:
+      
       - name: Checkout Repository
         uses: actions/checkout@v4
+      
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: "17"
           distribution: temurin
+      
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
+      
       - name: Make Gradlew Executable
         run: chmod +x ./gradlew
+      
       - name: Build with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+      
       - name: bootJar
         run: |
           ./gradlew bootJar
+      
       - name: Add Custom Gradle Task
         run: >
           echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build", "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
           ./gradlew build
+      
       - name: List Files in Path
         run: |
           # Use the 'find' command to list all files in the specified path
           find build/libs -type f
+      
       - name: Upload Jar
         uses: actions/upload-artifact@v3
         with:
@@ -44,7 +53,9 @@ jobs:
 
   run-tests:
     runs-on: ubuntu-latest
-    needs: build
+    needs: 
+      - build
+      - validate-compose
     environment: env
     env:
       DB_USER: ${{ vars.DB_USER }}
@@ -54,12 +65,16 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: "17"
           distribution: temurin
-          
+      
+      - name: Make Gradlew Executable
+        run: chmod +x ./gradlew  
+      
       - name: get jar
         uses: actions/download-artifact@v3
         with:
@@ -91,33 +106,12 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml config --quiet
   
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/master'
-    environment: env
-    env:
-      DB_USER: ${{ vars.DB_USER }}
-      DB_PASSWOD: ${{ vars.DB_PASSWORD }}
-    steps:
-      - name: Deploy Your Application
-        run: |
-          # Deploy
-  system-tests:
-    runs-on: ubuntu-latest
-    needs: deploy
-    if: github.ref == 'refs/heads/master'
-    steps:
-      - name: Run System Tests
-        run: |
-          # Do tests
+
+
   dockerize:
     runs-on: ubuntu-latest
-    needs:
-      - build
-      - validate-compose
-      - deploy
-      - system-tests
+    needs: run-tests
+      
     if: github.ref == 'refs/heads/master'
     environment: env
     env:
@@ -133,3 +127,16 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml build
           docker-compose -f docker-compose.yml up -d
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: dockerize
+    if: github.ref == 'refs/heads/master'
+    environment: env
+    env:
+      DB_USER: ${{ vars.DB_USER }}
+      DB_PASSWOD: ${{ vars.DB_PASSWORD }}
+    steps:
+      - name: Deploy Your Application
+        run: |
+          # Deploy
