@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: build/libs/app.jar
+          path: app.jar
 
   run-tests:
     runs-on: ubuntu-latest
