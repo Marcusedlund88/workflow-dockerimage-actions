@@ -41,21 +41,23 @@ class TaskControllerTest {
 
         assertEquals(username, "user");
 
-        /*
+
         RestAssured.baseURI = "http://localhost:8080";
 
         given()
                 .auth()
-                .basic(component.getUsername(),component.getPassword())
+                .basic(username,password)
                 .when()
                 .get("/all")
                 .then()
-                .statusCode(200)
+                .statusCode(200);
+                /*
                 .body("$", hasSize(2))
                 .body("[0].name", equalTo("task 1"))
                 .body("[1].name", equalTo("task 2"));
+                */
 
-         */
+
     }
 
     @Test
