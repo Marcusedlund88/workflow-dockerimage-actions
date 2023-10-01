@@ -30,6 +30,10 @@ jobs:
           echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build",
           "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
           ./gradlew build
+      - name: List Files in Path
+        run: |
+          # Use the 'find' command to list all files in the specified path
+          find build/libs -type f
       - name: Upload Jar
         uses: actions/upload-artifact@v3
         with:
