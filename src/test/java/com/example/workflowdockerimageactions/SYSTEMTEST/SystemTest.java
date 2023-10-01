@@ -33,7 +33,7 @@ class SystemTest {
         String username = System.getenv("SS_USER");
         String password = System.getenv("SS_PASSWORD");
 
-        RestAssured.baseURI = "http://localhost:8080";
+        RestAssured.baseURI = "http://localhost:8080/tasks";
 
         given()
                 .auth()
@@ -50,7 +50,7 @@ class SystemTest {
         String username = System.getenv("SS_USER");
         String password = System.getenv("SS_PASSWORD");
 
-        RestAssured.baseURI = "http://localhost:8080";
+        RestAssured.baseURI = "http://localhost:8080/tasks";
 
         given()
                 .auth()
@@ -68,7 +68,7 @@ class SystemTest {
         String username = System.getenv("SS_USER");
         String password = System.getenv("SS_PASSWORD");
 
-        RestAssured.baseURI = "http://localhost:8080";
+        RestAssured.baseURI = "http://localhost:8080/tasks";
 
         JSONObject json = new JSONObject();
         json.put("name","wash");

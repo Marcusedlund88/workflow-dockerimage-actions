@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/")
+@RequestMapping(path = "/tasks")
 //@RequiredArgsConstructor
 public class TaskController {
 

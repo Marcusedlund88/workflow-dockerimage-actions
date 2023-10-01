@@ -32,7 +32,7 @@ public class IntegrationTest {
                 .webAppContextSetup(webApplicationContext)
                 .build();
 
-        mockMvc.perform(get("/all"))
+        mockMvc.perform(get("/tasks/all"))
                 .andExpect(status().isOk());
 
     }
@@ -43,7 +43,7 @@ public class IntegrationTest {
                 .webAppContextSetup(webApplicationContext)
                 .build();
 
-        mockMvc.perform(delete("/1"))
+        mockMvc.perform(delete("/tasks/1"))
                 .andExpect(status().isOk());
 
     }
@@ -60,7 +60,7 @@ public class IntegrationTest {
                 .webAppContextSetup(webApplicationContext)
                 .build();
 
-        mockMvc.perform(post("/add")
+        mockMvc.perform(post("/tasks/add")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json.toString()))
                 .andExpect(status().isOk())
