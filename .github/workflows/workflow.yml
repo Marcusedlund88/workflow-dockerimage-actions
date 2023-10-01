@@ -108,6 +108,8 @@ jobs:
   
   dockerize:
     runs-on: ubuntu-latest
+    needs: 
+      - run-tests
     environment: env
     env:
       DB_USER: ${{ vars.DB_USER }}
