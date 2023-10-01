@@ -28,8 +28,7 @@ jobs:
       - name: Add Custom Gradle Task
         run: >
           echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build",
-          "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >>
-          build.gradle
+          "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
           ./gradlew build
       - name: Upload Jar
         uses: actions/upload-artifact@v3
