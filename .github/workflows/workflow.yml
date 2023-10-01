@@ -30,6 +30,7 @@ jobs:
           echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build",
           "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >>
           build.gradle
+          ./gradlew
       - name: Upload Jar
         uses: actions/upload-artifact@v3
         with:
