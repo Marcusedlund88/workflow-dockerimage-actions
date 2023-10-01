@@ -143,7 +143,11 @@ jobs:
       - name: Build from compose
         run: |
           docker-compose -f docker-compose.yml build
-          docker-compose -f docker-compose.yml up
+          docker-compose -f docker-compose.yml up -d
+          
+      - name: Wait for 1 minute
+        run: sleep 60
+        
       - name: shut down container
         run: |
           docker-compose -f docker-compose.yml down
