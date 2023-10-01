@@ -45,3 +45,4 @@ document.querySelector('#push').onclick = function () {
         timeInput.value = "";
     }
 };
+

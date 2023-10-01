@@ -55,7 +55,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void getAllTasks() {
+    void getAllTasksExpectNotNull() {
         taskInstance = taskService.createNewTask("Walk the dog", 0.5);
         List<Task> tasks = taskRepo.findAll();
         assertNotNull(tasks);
@@ -63,7 +63,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void deleteTask() {
+    void deleteTaskExpectNull() {
         taskInstance = taskService.createNewTask("Groceries", 1);
         long id = taskRepo.findTasksByName("Groceries").getId();
         taskService.deleteTask(id);
