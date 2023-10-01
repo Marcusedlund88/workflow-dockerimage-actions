@@ -27,9 +27,12 @@ services:
     depends_on:
       - my-db
     environment:
+      - SPRING_JPA_HIBERNATE_DDL-AUTO=create-drop
       - SPRING_DATASOURCE_URL=jdbc:mysql://my-db:3306/tasks
       - SPRING_DATASOURCE_USERNAME=${SS_USER}
       - SPRING_DATASOURCE_PASSWORD=${SS_PASSWORD}
+      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
     env_file:
       - .env
     networks:
