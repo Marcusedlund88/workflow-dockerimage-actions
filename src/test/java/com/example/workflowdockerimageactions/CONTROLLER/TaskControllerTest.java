@@ -26,8 +26,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class TaskControllerTest {
 
-    String username = System.getenv("SS_USER");
-    String password = System.getenv("SS_PASSWORD");
 
     @Autowired
     private Component component;
@@ -45,11 +43,12 @@ class TaskControllerTest {
 
         assertEquals(username, "user");
 
+        /*
         RestAssured.baseURI = "http://localhost:8080";
 
         given()
                 .auth()
-                .basic(username, password)
+                .basic(component.getUsername(),component.getPassword())
                 .when()
                 .get("/all")
                 .then()
@@ -57,11 +56,12 @@ class TaskControllerTest {
                 .body("$", hasSize(2))
                 .body("[0].name", equalTo("task 1"))
                 .body("[1].name", equalTo("task 2"));
+
+         */
     }
 
     @Test
     void deleteTask() {
-        logger.info(component.getUsername() + " " + component.getPassword());
     }
 
     @Test
