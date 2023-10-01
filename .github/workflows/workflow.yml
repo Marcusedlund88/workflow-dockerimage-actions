@@ -67,7 +67,7 @@ jobs:
       
       - name: run-app
         run: |
-          java -jar app.jar
+          java -jar workflow-dockerimage-actions-0.0.1-SNAPSHOT.jar
 
       - name: Run all tests
         run: |
