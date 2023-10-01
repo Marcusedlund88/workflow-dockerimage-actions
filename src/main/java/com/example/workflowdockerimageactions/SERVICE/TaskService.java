@@ -42,6 +42,8 @@ public class TaskService {
         if(taskRepo.findTasksById(taskId) != null ){
             taskRepo.deleteById(taskId);
         }
+        List<Task> tasks = taskRepo.findAll();
+        System.out.println(tasks);
     }
 
 }
