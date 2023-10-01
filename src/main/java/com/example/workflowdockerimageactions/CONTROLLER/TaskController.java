@@ -39,8 +39,6 @@ public class TaskController {
     @PostMapping("/add")
     public String addNewTask(@RequestBody Request request){
 
-
-        System.out.println("test");
         try{
             double time = request.getTime();
             String task = request.getName();;
