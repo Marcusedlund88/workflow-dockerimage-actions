@@ -30,6 +30,9 @@ jobs:
           echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build", "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
           echo 'task customJar(type: Jar) {from sourceSets.main.output archiveFileName = "app.jar"}' >> build.gradle
           ./gradlew build
+      - name: bootJar
+          run |
+          ./gradlew bootJar
       - name: List Files in Path
         run: |
           # Use the 'find' command to list all files in the specified path
