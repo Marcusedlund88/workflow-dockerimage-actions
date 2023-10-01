@@ -50,12 +50,11 @@ class TaskControllerTest {
                 .when()
                 .get("/all")
                 .then()
-                .statusCode(200);
-                /*
+                .statusCode(200)
                 .body("$", hasSize(2))
                 .body("[0].name", equalTo("task 1"))
                 .body("[1].name", equalTo("task 2"));
-                */
+
 
 
     }
