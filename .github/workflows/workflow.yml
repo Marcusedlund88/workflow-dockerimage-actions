@@ -25,13 +25,13 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+      - name: bootJar
+        run: |
+          ./gradlew bootJar
       - name: Add Custom Gradle Task
         run: >
           echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build", "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
           ./gradlew build
-      - name: bootJar
-        run: |
-          ./gradlew bootJar
       - name: List Files in Path
         run: |
           # Use the 'find' command to list all files in the specified path
