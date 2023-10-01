@@ -26,8 +26,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class TaskControllerTest {
 
-
-
     @Autowired
     private Component component;
 
@@ -55,12 +53,25 @@ class TaskControllerTest {
                 .body("[0].name", equalTo("task 1"))
                 .body("[1].name", equalTo("task 2"));
 
-
-
     }
 
     @Test
     void deleteTask() {
+
+        String username = System.getenv("SS_USER");
+        String password = System.getenv("SS_PASSWORD");
+
+        RestAssured.baseURI = "http://localhost:8080";
+
+        given()
+                .auth()
+                .basic(username,password)
+                .when()
+                .delete("1")
+                .then()
+                .statusCode(401);
+
+
     }
 
     @Test
