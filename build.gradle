@@ -40,4 +40,11 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+tasks.register("buildWithExclusions"){
+    doLast{
+        tasks.test.exclude("**/SYSTEMTEST/**").executeTests()
+    }
+}
+
+
 
