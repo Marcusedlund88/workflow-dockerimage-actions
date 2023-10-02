@@ -142,6 +142,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
@@ -153,9 +154,12 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: appcontainer
           labels: ${{ steps.meta.outputs.labels }}
           
+      - name: Wait for 1 minute
+        run: sleep 10
+
       - name: Wait for 1 minute
         run: sleep 10
 
