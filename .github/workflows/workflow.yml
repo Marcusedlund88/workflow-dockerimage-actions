@@ -41,7 +41,7 @@ jobs:
          # ./gradlew build
       - name: test-new-task
         run: |
-          ./gradlew --test
+          ./gradlew test
       
       #- name: List Files in Path
        # run: |
