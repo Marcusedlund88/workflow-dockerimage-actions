@@ -145,13 +145,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
-      - name: Wait for 1 minute
-        run: sleep 10
-
-      - name: shut down container
-        run: |
-          docker-compose -f docker-compose.yml down
 
   deploy:
     runs-on: ubuntu-latest
