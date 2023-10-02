@@ -134,32 +134,30 @@ jobs:
         with:
           name: app
           path: build/libs
-          
-      - name: Set environment variables for Docker Compose
-        run: |
-          echo "DB_USER=${DB_USER}" >> .env
-          echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
-          echo "SS_USER=${SS_USER}" >> .env
-          echo "SS_PASSWORD=${SS_PASSWORD}" >> .env
-      - name: Build from compose
-        run: |
-          docker build -t app-container:tag .
-          
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           
       - name: Wait for 1 minute
-        run: sleep 60
-
-      - name: List Images
-        run: |
-          docker images
-        id: list_image
-
-      - name: Save Docker images as artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: workflow-dockerimage-actions_rest-app
-          path: |
-            REPOSITORY
+        run: sleep 10
 
       - name: shut down container
         run: |
