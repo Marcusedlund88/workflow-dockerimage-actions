@@ -157,7 +157,7 @@ jobs:
       - name: Save Docker images as artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: docker-images
+          name: workflow-dockerimage-actions_rest-app
           path: |
             ${{ steps.list_images.outputs.stdout }}
 
