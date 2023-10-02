@@ -7,7 +7,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -18,6 +17,7 @@ public class SecurityConfig {
                     auth
                             .anyRequest()
                             .permitAll();
+
                 })
                 .build();
     }
