@@ -144,7 +144,7 @@ jobs:
       - name: Build from compose
         run: |
           docker-compose -f docker-compose.yml build
-     #     docker-compose -f docker-compose.yml up -d
+          docker save -o /build/libs/image.tar workflow-dockerimage-actions_rest-app:tag
           
       - name: Wait for 1 minute
         run: sleep 60
@@ -159,7 +159,7 @@ jobs:
         with:
           name: workflow-dockerimage-actions_rest-app
           path: |
-            ${{ steps.list_images.outputs.stdout }}
+            build/libs
 
       - name: shut down container
         run: |
