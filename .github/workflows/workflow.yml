@@ -37,8 +37,9 @@ jobs:
       
       - name: Add Custom Gradle Task
         run: >
-          echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build", "testClasses"]; startParameter.exclude("**/SYSTEMTEST/**", "**/XINTEGRATIONTEST/**",)}' >> build.gradle
-          ./gradlew build run
+          echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build", "testClasses"]; startParameter.exclude("**/SYSTEMTEST/**", "**/XINTEGRATIONTEST/**")}' >> build.gradle
+          cat build.gradle
+          ./gradlew buildWithExclusions
       
       - name: List Files in Path
         run: |
