@@ -158,10 +158,10 @@ jobs:
     needs: dockerize
     environment: env
     env:
-      echo "DB_USER=${DB_USER}" >> .env
-      echo "DB_PASSWORD=${DB_PASSWORD}" >> .env
-      echo "SS_USER=${SS_USER}" >> .env
-      echo "SS_PASSWORD=${SS_PASSWORD}" >> .env
+      DB_USER: ${{ vars.DB_USER }}
+      DB_PASSWORD: ${{ vars.DB_PASSWORD }}
+      SS_USER: ${{ vars.SS_USER }}
+      SS_PASSWORD: ${{ vars.SS_PASSWORD }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
