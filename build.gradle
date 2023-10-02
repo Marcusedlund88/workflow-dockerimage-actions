@@ -42,7 +42,7 @@ tasks.named('test') {
 
 tasks.register("buildWithExclusions"){
     doLast{
-        tasks.test.exclude("**/SYSTEMTEST/**").executeTests()
+        tasks.test.exclude("**/SYSTEMTESTS/**").executeTests()
     }
 }
 
