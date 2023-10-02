@@ -110,6 +110,10 @@ jobs:
     needs: 
       - run-tests
 
+    env:
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
