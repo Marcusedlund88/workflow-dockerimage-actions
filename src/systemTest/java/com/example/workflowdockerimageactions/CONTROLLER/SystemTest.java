@@ -1,31 +1,18 @@
-package com.example.workflowdockerimageactions.SYSTEMTEST;
+package com.example.workflowdockerimageactions.CONTROLLER;
 
-
-import com.example.workflowdockerimageactions.COMPONENT.Component;
-import com.example.workflowdockerimageactions.REPO.TaskRepo;
 import io.restassured.RestAssured;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.hasSize;
-import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+
+@SpringBootTest()
+@ContextConfiguration(classes = SystemTest.class)
 class SystemTest {
-
-    @Autowired
-    private Component component;
-
-    @Autowired
-    private TaskRepo taskRepo;
-
-    private static final Logger logger = LoggerFactory.getLogger(SystemTest.class);
 
     @Test
     void getAllTasks(){

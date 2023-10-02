@@ -40,10 +40,31 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-tasks.register("buildWithExclusions"){
-    doLast{
-        tasks.test.exclude("**/SYSTEMTESTS/**").executeTests()
+sourceSets {
+    systemTest {
+        java.srcDir "$projectDir/src/systemTest"
+        resources.srcDir "$projectDir/src/systemTest/resources"
     }
+}
+configurations {
+    systemTestImplementation.extendsFrom testImplementation
+    systemTestRuntime.extendsFrom testRuntime
+}
+dependencies {
+    systemTestImplementation 'org.springframework.boot:spring-boot-starter-test'
+    systemTestImplementation 'org.springframework.security:spring-security-test'
+    systemTestImplementation 'org.mockito:mockito-core'
+    systemTestImplementation 'io.rest-assured:rest-assured:5.3.2'
+}
+task systemTesting(type: Test) {
+    testClassesDirs = sourceSets.systemTest.output.classesDirs
+    classpath = sourceSets.systemTest.runtimeClasspath
+}
+test {
+    useJUnitPlatform()
+}
+tasks.named('systemTesting') {
+    useJUnitPlatform()
 }
 
 
