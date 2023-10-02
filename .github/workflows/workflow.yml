@@ -31,13 +31,16 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
       
-      - name: bootJar
-        run: |
-          ./gradlew bootJar
+      #- name: bootJar
+       # run: |
+        #  ./gradlew bootJar
       
-      - name: Add Custom Gradle Task
-        run: >
-          echo 'tasks.register("buildWithExclusions"){ doLast{tasks.test.exclude("**/SYSTEMTEST/**").executeTests()}'
+      #- name: Add Custom Gradle Task
+       # run: >
+        #  echo 'task buildWithExclusions(type: GradleBuild) { tasks = ["build", "testClasses"]; startParameter.excludedTaskNames = ["test"] }' >> build.gradle
+         # ./gradlew build
+      - name: test-new-task
+        run: |
           ./gradlew buildWithExclusions
       
       - name: List Files in Path
