@@ -37,7 +37,7 @@ jobs:
       
       - name: Add Custom Gradle Task
         run: >
-          echo tasks.register("buildWithExclusions"){ doLast{tasks.test.exclude("**/SYSTEMTEST/**").executeTests()}
+          echo 'tasks.register("buildWithExclusions"){ doLast{tasks.test.exclude("**/SYSTEMTEST/**").executeTests()}'
           ./gradlew buildWithExclusions
       
       - name: List Files in Path
