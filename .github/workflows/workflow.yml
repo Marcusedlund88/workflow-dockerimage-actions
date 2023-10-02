@@ -126,9 +126,14 @@ jobs:
       - name: Make Gradlew Executable
         run: chmod +x ./gradlew
 
-      - name: bootJar
-        run: |
-          ./gradlew bootJar 
+      #- name: bootJar
+      #  run: |
+       #   ./gradlew bootJar
+      - name: Download JAR Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: app
+          path: build/libs
           
       - name: Set environment variables for Docker Compose
         run: |
@@ -139,11 +144,23 @@ jobs:
       - name: Build from compose
         run: |
           docker-compose -f docker-compose.yml build
-          docker-compose -f docker-compose.yml up -d
+     #     docker-compose -f docker-compose.yml up -d
           
       - name: Wait for 1 minute
         run: sleep 60
-        
+
+      - name: List Images
+        run: |
+          docker images
+        id: list_image
+
+      - name: Save Docker images as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: docker-images
+          path: |
+            ${{ steps.list_images.outputs.stdout }}
+
       - name: shut down container
         run: |
           docker-compose -f docker-compose.yml down
@@ -155,7 +172,7 @@ jobs:
     environment: env
     env:
       DB_USER: ${{ vars.DB_USER }}
-      DB_PASSWOD: ${{ vars.DB_PASSWORD }}
+      DB_PASSWORD: ${{ vars.DB_PASSWORD }}
     steps:
       - name: Deploy Your Application
         run: |
